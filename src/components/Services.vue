@@ -1,6 +1,8 @@
 <template>
   <div class="container">
 
+    <h1 class="title is-1">Services</h1>
+
     <br>
 
     <ul>
@@ -57,7 +59,7 @@ export default {
         var plans = response.data
         // console.log('self.plans: ' + self.plans)
         for (var a = 0; a < plans.data.length; a++) {
-          console.log('Getting items for plan: ' + plans.data[a].id)
+          console.log('Adding plan: ' + plans.data[a].id)
           self.plans.push(plans.data[a])
           self.plans2[plans.data[a].id] = plans.data[a]
           var url = 'https://api.planningcenteronline.com/services/v2/service_types/299966/plans/' + plans.data[a].id + '/items?include=song,arrangement,key'
@@ -70,7 +72,7 @@ export default {
             .then(function (response) {
               // console.log('success 2: ' + response)
               // console.log(response.data.meta.parent)
-              // console.log('selfplans2: ' + self.plans2)
+              console.log('Adding items to plan: ' + response.data.meta.parent.id)
               self.plans2[response.data.meta.parent.id] = response.data
               var newObj = {}
               var oldObj = self.plans2
